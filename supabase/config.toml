@@ -1,0 +1,7 @@
+project_id = "mqdhisrirpesywdzoosj"
+
+[auth.email]
+enable_confirmations = true
+
+[functions.admin-users]
+verify_jwt = false

@@ -17,7 +17,7 @@ export default function App() {
         {session && <button onClick={() => supabase.auth.signOut()}>Sign out</button>}
       </header>
       {session ? <Home user={session.user} /> : <Auth />}
-      <footer className="muted">Build: vuln-lab-v1</footer>
+      <footer className="muted">Build: vuln-lab-v1-fixed</footer>
     </main>
   );
 }
@@ -80,10 +80,6 @@ function Home({ user }) {
     setUsers(await listAllUsers());
   }
 
-  async function showUsersApi() {
-    const res = await fetch(`${import.meta.env.VITE_FUNCTIONS_URL || 'https://mqdhisrirpesywdzoosj.supabase.co/functions/v1'}/admin-users`);
-    setUsers(await res.json());
-  }
 
   return (
     <section>
@@ -94,7 +90,7 @@ function Home({ user }) {
       <ul className="notes">
         {notes.map((n) => (
           <li key={n.id}>
-            <span dangerouslySetInnerHTML={{ __html: n.text }} />
+            <span>{n.text}</span>
           </li>
         ))}
       </ul>
@@ -106,7 +102,6 @@ function Home({ user }) {
       <h2>Admin</h2>
       <div className="row">
         <button onClick={showUsers}>All users</button>
-        <button onClick={showUsersApi}>All users (API)</button>
       </div>
       {users && <pre>{JSON.stringify(users, null, 2)}</pre>}
     </section>

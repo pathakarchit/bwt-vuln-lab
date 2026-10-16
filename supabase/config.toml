@@ -4,4 +4,4 @@ project_id = "mqdhisrirpesywdzoosj"
 enable_confirmations = true
 
 [functions.admin-users]
-verify_jwt = false
+verify_jwt = true
